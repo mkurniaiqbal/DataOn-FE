@@ -1,0 +1,21 @@
+.container{
+    background-color: aqua;
+}
+
+.login-form-forgot{
+    justify-content: space-around;
+}
+
+.title{
+    color: rgb(0, 179, 255)
+}
+
+.footer{
+    text-align: center;
+    margin-top: 23px;
+    color: rgb(113, 113, 113);
+}
+
+.pFooter{
+    margin: 0;
+}
