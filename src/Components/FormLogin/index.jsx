@@ -1,8 +1,55 @@
-import React from "react";
-import { Form, Input, Col, Row, Checkbox, Button } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Col, Row, Checkbox, Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function FormLogin() {
-  const onFinish = () => {};
+  const navigate = useNavigate();
+
+  const initialValues = { username: "", password: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  console.log("ini tes", formValues);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const onFinish = async () => {
+    const post = {
+      username: formValues.username,
+      password: formValues.password,
+    };
+    try {
+      await axios.post("http://192.168.1.33:8080/api/auth/signin", post);
+      if (post.username === "iqbal") {
+        navigate("/dashboard");
+      } else if (post.username === "user") {
+        navigate("/");
+      }
+      console.log("ini post", post.username);
+      message.success("Login berhasil");
+    } catch {
+      message.error("Username atau Password salah");
+    }
+  };
+
+  // const getUsername = localStorage.getItem("username");
+  // const getPassword = localStorage.getItem("password");
+
+  // const onFinish = () => {
+  //   console.log(" formValues; ", formValues);
+  //   if (formValues.username === "iqbal" && formValues.password === "iqbal123") {
+  //     localStorage.setItem("username", formValues.username);
+  //     localStorage.setItem("password", formValues.password);
+  //     navigate("/dashboard");
+  //   }
+  //   window.location.reload();
+  // };
+
+  // {getUsername && getPassword ? (
+  //   <Dashboard />
+  // ) : (
 
   const onFinishFailed = () => {};
   return (
@@ -25,7 +72,7 @@ function FormLogin() {
       >
         <Form.Item
           label="Username"
-          name="Username"
+          name="username"
           rules={[
             {
               required: true,
@@ -41,12 +88,16 @@ function FormLogin() {
             },
           ]}
         >
-          <Input />
+          <Input
+            name="username"
+            value={formValues.username}
+            onChange={handleChange}
+          />
         </Form.Item>
 
         <Form.Item
           label="Password"
-          name="Password"
+          name="password"
           rules={[
             {
               required: true,
@@ -58,7 +109,11 @@ function FormLogin() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password
+            name="password"
+            value={formValues.username}
+            onChange={handleChange}
+          />
         </Form.Item>
 
         <Form.Item>

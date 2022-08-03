@@ -2,13 +2,31 @@ import React from "react";
 import { Row, Col, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+function Dashboard() {
   const navigate = useNavigate();
   return (
     <div>
       <Row justify="space-between">
         <Col>
-          <h1>home</h1>
+          <h1>Dashboard</h1>
+        </Col>
+        <Col>
+          <Button
+            onClick={() => {
+              navigate("/training/create");
+            }}
+          >
+            Create Training
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            onClick={() => {
+              navigate("/training/:id/edit");
+            }}
+          >
+            Edit
+          </Button>
         </Col>
         <Col>
           <Button
@@ -25,7 +43,7 @@ function Home() {
               navigate("/login");
             }}
           >
-            logout
+            Logout
           </Button>
         </Col>
       </Row>
@@ -33,4 +51,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;
