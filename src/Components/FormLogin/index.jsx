@@ -8,7 +8,6 @@ function FormLogin() {
 
   const initialValues = { username: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
-  console.log("ini tes", formValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,35 +20,20 @@ function FormLogin() {
       password: formValues.password,
     };
     try {
-      await axios.post("http://192.168.1.33:8080/api/auth/signin", post);
-      if (post.username === "iqbal") {
+      const res = await axios.post(
+        "http://192.168.1.33:8080/api/auth/signin",
+        post
+      );
+      if (res.data.roles[0] === "ROLE_ADMIN") {
         navigate("/dashboard");
-      } else if (post.username === "user") {
+      } else if (res.data.roles[0] === "ROLE_USER") {
         navigate("/");
       }
-      console.log("ini post", post.username);
       message.success("Login berhasil");
     } catch {
       message.error("Username atau Password salah");
     }
   };
-
-  // const getUsername = localStorage.getItem("username");
-  // const getPassword = localStorage.getItem("password");
-
-  // const onFinish = () => {
-  //   console.log(" formValues; ", formValues);
-  //   if (formValues.username === "iqbal" && formValues.password === "iqbal123") {
-  //     localStorage.setItem("username", formValues.username);
-  //     localStorage.setItem("password", formValues.password);
-  //     navigate("/dashboard");
-  //   }
-  //   window.location.reload();
-  // };
-
-  // {getUsername && getPassword ? (
-  //   <Dashboard />
-  // ) : (
 
   const onFinishFailed = () => {};
   return (

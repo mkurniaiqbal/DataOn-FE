@@ -13,12 +13,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<LoginPage />} />
-          {/* <Route element={<ProtectedRoutes />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/training/create" element={<Training />} />
           <Route path="/training/:id/edit" element={<Training />} />
           <Route path="/training/:id" element={<Training />} />
-          {/* </Route> */}
         </Routes>
       </BrowserRouter>
     </div>
