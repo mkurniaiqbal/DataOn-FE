@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const roles = localStorage.getItem("roles");
   return (
     <div>
       <Row justify="space-between">
@@ -20,13 +21,15 @@ function Dashboard() {
           </Button>
         </Col>
         <Col>
-          <Button
-            onClick={() => {
-              navigate("/training/:id/edit");
-            }}
-          >
-            Edit
-          </Button>
+          {roles === "ROLE_ADMIN" && (
+            <Button
+              onClick={() => {
+                navigate("/training/:id/edit");
+              }}
+            >
+              Edit
+            </Button>
+          )}
         </Col>
         <Col>
           <Button
@@ -41,6 +44,7 @@ function Dashboard() {
           <Button
             onClick={() => {
               navigate("/login");
+              localStorage.clear();
             }}
           >
             Logout

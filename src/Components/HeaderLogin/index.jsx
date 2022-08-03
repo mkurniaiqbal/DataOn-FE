@@ -1,36 +1,34 @@
 import React from "react";
-import { Row, Col, Image, Dropdown, Space, Menu } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { Row, Col, Image, Select } from "antd";
 import logo from "../../assets/logo.jpeg";
 import "./style.css";
 function HeaderLogin() {
-  const menu = (
-    <Menu
-      items={[
-        {
-          key: "1",
-          label: <a>Bahasa (IDN)</a>,
-        },
-      ]}
-    />
-  );
+  const { Option } = Select;
   return (
     <div>
-      <Row>
-        <Image src={logo} style={{ width: 120, height: 50 }} />
-        <Col span={8} className="Header">
-          <Row>Human Resources Information System</Row>
-          <Row className="titleHeader">SunFish 7</Row>
+      <Row justify="space-around">
+        <Col>
+          <Image src={logo} style={{ width: 120, height: 50 }} />
         </Col>
-        <Col offset={10}>
-          <Dropdown overlay={menu} trigger={["click"]}>
-            <a onClick={(e) => e.preventDefault()}>
-              <Space className="titleLanguage">
-                English (EN)
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
+        <Col className="Header" flex={1}>
+          <Col>Human Resources Information System</Col>
+          <Col className="titleHeader">SunFish 7</Col>
+        </Col>
+        <Col>
+          <Select
+            labelInValue
+            bordered={false}
+            defaultValue={{
+              value: "english",
+              label: "English (EN)",
+            }}
+            style={{
+              width: 150,
+            }}
+          >
+            <Option value="indonesia">Indonesia(IDN)</Option>
+            <Option value="english">English(EN)</Option>
+          </Select>
         </Col>
       </Row>
     </div>
