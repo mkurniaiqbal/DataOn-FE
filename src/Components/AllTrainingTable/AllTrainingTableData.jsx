@@ -1,5 +1,5 @@
 import { Rate } from "antd";
-import { CovertDate } from "./ConvertDate";
+import { ConvertDate } from "../../Utils/ConvertDate";
 import React from "react";
 
 const columns = [
@@ -22,7 +22,7 @@ const columns = [
     dataIndex: "startDate",
     key: "eventPeriod",
     sorter: (a, b) => new Date(a.startdate) - new Date(b.StartDate),
-    render: CovertDate,
+    render: ConvertDate,
   },
   {
     title: "Training Type",

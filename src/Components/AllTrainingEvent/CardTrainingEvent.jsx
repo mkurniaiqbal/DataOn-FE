@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import "./CardTrainingEvent.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../API";
-import { formatDate, formatEndDate } from "../FormatDate/FormatDate";
+import { formatDate, formatEndDate } from "../../Utils/FormatDate";
 
 function CardTrainingEvent(props) {
   const joinText = "You've joined this class";

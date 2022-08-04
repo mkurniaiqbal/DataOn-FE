@@ -1,4 +1,4 @@
-const CovertDate = (date, text) => {
+const ConvertDate = (date, text) => {
   const monthNames = [
     "Jan",
     "Feb",
@@ -29,4 +29,4 @@ const CovertDate = (date, text) => {
   return `${day} ${month} ${year}, ${hour}:${minute} - ${hourEnd}:${minuteEnd}`;
 };
 
-export { CovertDate };
+export { ConvertDate };
