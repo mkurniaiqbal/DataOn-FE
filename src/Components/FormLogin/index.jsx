@@ -21,11 +21,11 @@ function FormLogin() {
     };
     try {
       const res = await axios.post(
-        "http://192.168.104.2:8080/api/auth/signin",
+        "http://192.168.1.33:8080/api/auth/signin",
         post
       );
       localStorage.setItem("roles", res.data.roles);
-      navigate("/dashboard");
+      navigate("/");
       message.success("Login berhasil");
     } catch {
       message.error("Username atau Password salah");
