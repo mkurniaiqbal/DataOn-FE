@@ -8,3 +8,7 @@
 .ant-carousel .slick-dots-bottom{
     bottom: -46px !important;
 }
+
+.ant-carousel .slick-slide{
+    text-align: center;
+}

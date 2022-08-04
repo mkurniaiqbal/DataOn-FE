@@ -1,8 +1,36 @@
-import React from "react";
-import { Form, Input, Col, Row, Checkbox, Button } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Col, Row, Checkbox, Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function FormLogin() {
-  const onFinish = () => {};
+  const navigate = useNavigate();
+
+  const initialValues = { username: "", password: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const onFinish = async () => {
+    const post = {
+      username: formValues.username,
+      password: formValues.password,
+    };
+    try {
+      const res = await axios.post(
+        "http://192.168.104.2:8080/api/auth/signin",
+        post
+      );
+      localStorage.setItem("roles", res.data.roles);
+      navigate("/dashboard");
+      message.success("Login berhasil");
+    } catch {
+      message.error("Username atau Password salah");
+    }
+  };
 
   const onFinishFailed = () => {};
   return (
@@ -25,7 +53,7 @@ function FormLogin() {
       >
         <Form.Item
           label="Username"
-          name="Username"
+          name="username"
           rules={[
             {
               required: true,
@@ -41,12 +69,16 @@ function FormLogin() {
             },
           ]}
         >
-          <Input />
+          <Input
+            name="username"
+            value={formValues.username}
+            onChange={handleChange}
+          />
         </Form.Item>
 
         <Form.Item
           label="Password"
-          name="Password"
+          name="password"
           rules={[
             {
               required: true,
@@ -58,7 +90,11 @@ function FormLogin() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password
+            name="password"
+            value={formValues.username}
+            onChange={handleChange}
+          />
         </Form.Item>
 
         <Form.Item>
