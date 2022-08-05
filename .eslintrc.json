@@ -25,6 +25,7 @@
         "quotes": [
             "error",
             "double"
-        ]
+        ],
+        "react/prop-types": "off"
     }
 }

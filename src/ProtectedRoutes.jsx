@@ -12,7 +12,7 @@ function useAuth() {
 
 function ProtectedRoutes() {
   const isAuth = useAuth();
-  return !isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
+  return !isAuth ? <Navigate to="/" /> : <Outlet />;
 }
 
 export default ProtectedRoutes;
