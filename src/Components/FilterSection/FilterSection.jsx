@@ -5,7 +5,13 @@ import ButtonToge from "../ToggleView/ButtonToge";
 import { AppContext } from "../../Context";
 
 const FileterSection = () => {
-  const { handleClick, tableViews } = useContext(AppContext);
+  const {
+    handleClick,
+    tableViews,
+    onSearch,
+    handleChangeCompleted,
+    handleChangeStatus,
+  } = useContext(AppContext);
 
   const { Option } = Select;
   const onChange = () => {};
@@ -26,6 +32,7 @@ const FileterSection = () => {
               type={"search"}
               style={{ width: 300 }}
               placeholder="Search"
+              onChange={onSearch}
             />
           </Row>
         </Col>
@@ -37,6 +44,7 @@ const FileterSection = () => {
               placeholder="Select Event"
               align="left"
               style={{ width: 300 }}
+              onChange={handleChangeStatus}
             >
               <Option name="onLine" value="isOnline">
                 Online Class
@@ -59,6 +67,7 @@ const FileterSection = () => {
               style={{ width: 300 }}
               bodyStyle={{ padding: "0" }}
               placeholder="Select Event"
+              onChange={handleChangeCompleted}
             >
               <Option value="isCompleted">Completed</Option>
               <Option value="isNotCompleted">Not Completed</Option>
@@ -66,7 +75,7 @@ const FileterSection = () => {
           </Row>
         </Col>
 
-        <Col xl={2}>
+        <Col xl={3}>
           <Row>
             <Col style={{ marginBottom: "10px" }}>Releated Job only</Col>
             <Row style={{ width: "100%" }}>
