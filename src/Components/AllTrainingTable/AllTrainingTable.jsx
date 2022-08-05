@@ -6,7 +6,8 @@ import { columns } from "./AllTrainingTableData";
 import Loading from "../Loading/Loading";
 
 const AllTrainingTableView = () => {
-  const { training, data, totalPage, setPagination } = useContext(AppContext);
+  const { training, dataTable, totalPage, setPagination } =
+    useContext(AppContext);
   if (training.isLoading) return <Loading />;
   if (training.error) return message.error("Get Data Error");
 
@@ -32,7 +33,7 @@ const AllTrainingTableView = () => {
 
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={dataTable}
           size={"small"}
           pagination={{
             defaultCurrent: 1,

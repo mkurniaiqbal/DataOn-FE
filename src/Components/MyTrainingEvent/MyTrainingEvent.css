@@ -1,0 +1,13 @@
+.titleTraining{
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.prev{
+    background-color: red;
+}
+
+.ant-card-bordered{
+    border: 2px solid #f0f0f0;
+}
